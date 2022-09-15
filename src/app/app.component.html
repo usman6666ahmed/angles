@@ -1,2 +1,21 @@
-<h1 class="heading">Hello Angular</h1>
-<button>{{ title }}</button>
+<app-navbar></app-navbar>
+<h1 class="heading">Todo List</h1>
+
+<input type="text"
+       [value]="newTodoText"
+       (keyup)="onChange($event)"
+       />
+<button type="button" (click)="newTodo()">New</button>
+<ul *ngFor="let todo of todos">
+  <li
+    [ngStyle]="{
+      cursor: 'default'
+    }"
+  >
+    <h3 (click)="completeTodo(todo.id)">
+      {{ todo.title }}
+      <span *ngIf="todo.done">✅</span>
+      <span *ngIf="!todo.done">❌</span>
+    </h3>
+  </li>
+</ul>
